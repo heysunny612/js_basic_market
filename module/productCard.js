@@ -1,7 +1,7 @@
 import { makeDOMwithProperties, appendChidrenList } from '../utils/dom.js';
 import { getCartToggleBtn } from './cartToggleButton.js';
 
-export const getProductCard = (productData) => {
+export const getProductCard = (productData, removeCartCallback) => {
   const { id, imgSrc, name, discountPercent, price, originalPrice } =
     productData;
   const $productCard = makeDOMwithProperties('div', {
@@ -16,7 +16,7 @@ export const getProductCard = (productData) => {
     alt: name,
   });
 
-  const $cartToggleBtn = getCartToggleBtn(productData);
+  const $cartToggleBtn = getCartToggleBtn(productData, removeCartCallback);
 
   // //---------PRODUCT DESCIPTION
   const $productDescription = makeDOMwithProperties('div', {
