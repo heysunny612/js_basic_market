@@ -1,24 +1,17 @@
-import { getProductCard } from './module/productCard.js';
+import { getProductList } from './module/productList.js';
+import { fetchSectionListData } from './module/fetch.js';
+import { setButtonEvent } from './module/productFilter.js';
+import { setFilterEvent } from './module/productFilter.js';
 
-const $productListCon = document.querySelector('.product-list-con');
+const $productListSection = document.querySelector('.product-list-section');
 
-const $productCard = getProductCard({
-  id: 1,
-  imgSrc: '../public/assets/파프리카.jpg',
-  name: '파프리카 2입',
-  discountPercent: 20,
-  price: 2000,
-  originalPrice: 2500,
-});
+const sectionDataList = await fetchSectionListData();
+const productList = sectionDataList.reduce(
+  (prev, curr) => [...prev, ...curr.productList],
+  []
+);
+const $productSection = getProductList(productList);
+$productListSection.appendChild($productSection);
 
-const $productCard2 = getProductCard({
-  id: 2,
-  imgSrc: '../public/assets/당근.jpg',
-  name: '친환경 당근 400g',
-  discountPercent: 33,
-  price: 2000,
-  originalPrice: 3000,
-});
-
-$productListCon.appendChild($productCard);
-$productListCon.appendChild($productCard2);
+setFilterEvent();
+setButtonEvent(productList);

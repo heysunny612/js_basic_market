@@ -24,7 +24,7 @@ export const getProductCard = (productData, removeCartCallback) => {
   });
   const $productName = makeDOMwithProperties('div', {
     className: 'product-name',
-    innerText: `${id} ${name}`,
+    innerText: `${name}`,
   });
   const $productPriceCon = makeDOMwithProperties('div', {
     className: 'product-price-con',
